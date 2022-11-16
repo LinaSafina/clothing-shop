@@ -1,4 +1,4 @@
-import getImageByKey from '../../helpers/getImageByKey';
+import getImageByKey from '../../utils/helpers/getImageByKey.utils';
 import './category-item.styles.scss';
 
 const CategoryItem = ({ item: { title, img } }) => {

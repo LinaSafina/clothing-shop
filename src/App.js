@@ -1,15 +1,21 @@
-import CategoriesList from './components/categories-list/categories-list.component';
+import { Routes, Route } from 'react-router-dom';
+import Navigation from './pages/navigation/navigation.component';
+import Contacts from './pages/contacts/contacts.component';
+import SignIn from './pages/auth/auth.component';
+import Shop from './pages/shop/shop.component';
+import Home from './pages/home/home.component';
 
 const App = () => {
-  const categories = [
-    { id: '1', title: 'Шляпы', img: 'hats' },
-    { id: '2', title: 'Куртки', img: 'jackets' },
-    { id: '3', title: 'Кроссовки', img: 'trainers' },
-    { id: '4', title: 'Женщины', img: 'women' },
-    { id: '5', title: 'Мужчины', img: 'men' },
-  ];
-
-  return <CategoriesList categories={categories} />;
+  return (
+    <Routes>
+      <Route path='/' element={<Navigation />}>
+        <Route index element={<Home />} />
+        <Route path='/shop' element={<Shop />} />
+        <Route path='/contacts' element={<Contacts />} />
+        <Route path='/auth' element={<SignIn />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
