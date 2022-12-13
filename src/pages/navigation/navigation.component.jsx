@@ -1,13 +1,24 @@
 import { Link, Outlet } from 'react-router-dom';
 import './navigation.styles.scss';
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
+import { NAV_CATEGORIES } from '../auth/FORM_DATA';
+import { useContext } from 'react';
+import { UserContext } from '../../context/user.context';
+import { signOutUser } from '../../utils/firebase/firebase.utils';
+import CartIcon from '../../components/cart-icon/cart-icon.component';
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+import { CartContext } from '../../context/cart.context';
 
 const Navigation = () => {
-  const navCategories = [
-    { title: 'Магазин', url: 'shop' },
-    { title: 'Контакты', url: 'contacts' },
-    { title: 'Вход', url: 'auth' },
-  ];
+  const { SHOP, CONTACTS, AUTH, LOGOUT } = NAV_CATEGORIES;
+
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { isCartDropdownShown } = useContext(CartContext);
+
+  const handleSignOut = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
 
   return (
     <>
@@ -16,14 +27,33 @@ const Navigation = () => {
           <CrownLogo className='logo__svg' />
         </Link>
         <ul className='nav__list'>
-          {navCategories.map(({ title, url }, index) => (
-            <li className='nav__list-item' key={index}>
-              <Link className='nav__link' to={url}>
-                {title}
+          <li className='nav__list-item'>
+            <Link className='nav__link' to={SHOP.url}>
+              {SHOP.title}
+            </Link>
+          </li>
+          <li className='nav__list-item'>
+            <Link className='nav__link' to={CONTACTS.url}>
+              {CONTACTS.title}
+            </Link>
+          </li>
+          <li className='nav__list-item'>
+            {currentUser && (
+              <span className='nav__link' onClick={handleSignOut}>
+                {LOGOUT.title}
+              </span>
+            )}
+            {!currentUser && (
+              <Link className='nav__link' to={AUTH.url}>
+                {AUTH.title}
               </Link>
-            </li>
-          ))}
+            )}
+          </li>
+          <li>
+            <CartIcon />
+          </li>
         </ul>
+        {isCartDropdownShown && <CartDropdown />}
       </nav>
       <Outlet />
     </>

@@ -1,4 +1,4 @@
-import { BUTTON_VARIANT_CLASSES } from './BUTTON_VARIANT_CLASSES';
+import { BUTTON_VARIANT_CLASSES } from '../../pages/auth/FORM_DATA';
 import './button.styles.scss';
 
 const Button = ({ btnVarient, children, className, ...otherProps }) => {

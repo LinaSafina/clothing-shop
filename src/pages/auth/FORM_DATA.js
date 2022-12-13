@@ -74,3 +74,16 @@ export const SIGN_UP_FORM_DATA = {
   },
   btns: [{ title: 'Регистрация', type: 'submit', btnVariant: 'primary' }],
 };
+
+export const NAV_CATEGORIES = {
+  SHOP: { title: 'Магазин', url: 'shop' },
+  CONTACTS: { title: 'Контакты', url: 'contacts' },
+  AUTH: { title: 'Вход', url: 'auth' },
+  LOGOUT: { title: 'Выйти', url: 'auth' },
+};
+
+export const BUTTON_VARIANT_CLASSES = {
+  default: '',
+  inverted: 'btn--inverted',
+  secondary: 'btn--secondary',
+};
