@@ -1,3 +1,5 @@
+import { BUTTON_VARIANT_CLASSES } from '../../components/button/BUTTON_VARIANT_CLASSES';
+
 export const SIGN_IN_FORM_DATA = {
   name: 'SIGN_IN_FORM',
   title: 'У меня уже есть аккаунт',
@@ -23,11 +25,15 @@ export const SIGN_IN_FORM_DATA = {
     password: '',
   },
   btns: [
-    { title: 'Войти', type: 'submit', btnVariant: 'primary' },
+    {
+      title: 'Войти',
+      type: 'submit',
+      btnVariant: `${BUTTON_VARIANT_CLASSES.base}`,
+    },
     {
       title: 'Войти с помощью Google',
       type: 'button',
-      btnVariant: 'secondary',
+      btnVariant: `${BUTTON_VARIANT_CLASSES.secondary}`,
     },
   ],
 };
@@ -72,7 +78,13 @@ export const SIGN_UP_FORM_DATA = {
     password: '',
     confirmPassword: '',
   },
-  btns: [{ title: 'Регистрация', type: 'submit', btnVariant: 'primary' }],
+  btns: [
+    {
+      title: 'Регистрация',
+      type: 'submit',
+      btnVariant: `${BUTTON_VARIANT_CLASSES.base}`,
+    },
+  ],
 };
 
 export const NAV_CATEGORIES = {
@@ -80,10 +92,4 @@ export const NAV_CATEGORIES = {
   CONTACTS: { title: 'Контакты', url: 'contacts' },
   AUTH: { title: 'Вход', url: 'auth' },
   LOGOUT: { title: 'Выйти', url: 'auth' },
-};
-
-export const BUTTON_VARIANT_CLASSES = {
-  default: '',
-  inverted: 'btn--inverted',
-  secondary: 'btn--secondary',
 };

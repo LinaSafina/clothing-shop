@@ -1,8 +1,14 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/cart.context';
 import Button from '../button/button.component';
+import { BUTTON_VARIANT_CLASSES } from '../button/BUTTON_VARIANT_CLASSES';
 
-import './product-card.styles.scss';
+import {
+  ProductItem,
+  ProductName,
+  ProductPrice,
+  ProductText,
+} from './product-card.styles';
 
 const ProductCard = ({ product }) => {
   const { imageUrl, name, price } = product;
@@ -14,21 +20,20 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <li className='product-item'>
-      <img className='product__img' src={imageUrl} alt={name} />
-      <div className='product__text'>
-        <span className='product__name'>{name}</span>
-        <span className='product__price'>{price}</span>
-      </div>
+    <ProductItem>
+      <img src={imageUrl} alt={name} />
+      <ProductText>
+        <ProductName>{name}</ProductName>
+        <ProductPrice>{price}</ProductPrice>
+      </ProductText>
       <Button
-        btnVarient='inverted'
+        btnVarient={BUTTON_VARIANT_CLASSES.inverted}
         type='button'
-        className='product__btn'
         onClick={addProductToCartHandler}
       >
         В корзину
       </Button>
-    </li>
+    </ProductItem>
   );
 };
 

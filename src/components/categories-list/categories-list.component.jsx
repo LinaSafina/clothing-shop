@@ -1,13 +1,14 @@
-import CategoryItem from '../category-item/category-item.component';
-import './categories-list.styles.scss';
+import DirectoryItem from '../directory-item/directory-item.component';
+import { StyledCategoriesList } from './categories-list.styles';
+import { CATEGORIES_LIST } from './CATEGORIES_LIST';
 
-const CategoriesList = ({ categories }) => {
+const CategoriesList = () => {
   return (
-    <ul className='categories__list'>
-      {categories.map((category) => (
-        <CategoryItem key={category.id} item={category} />
+    <StyledCategoriesList>
+      {CATEGORIES_LIST.map((category) => (
+        <DirectoryItem key={category.id} item={category} />
       ))}
-    </ul>
+    </StyledCategoriesList>
   );
 };
 

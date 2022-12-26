@@ -1,13 +1,15 @@
-import { Link, Outlet } from 'react-router-dom';
-import './navigation.styles.scss';
-import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
-import { NAV_CATEGORIES } from '../auth/FORM_DATA';
 import { useContext } from 'react';
-import { UserContext } from '../../context/user.context';
-import { signOutUser } from '../../utils/firebase/firebase.utils';
+import { Link, Outlet } from 'react-router-dom';
+
+import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+
+import { NAV_CATEGORIES } from '../auth/FORM_DATA';
+import { UserContext } from '../../context/user.context';
+import { signOutUser } from '../../utils/firebase/firebase.utils';
 import { CartContext } from '../../context/cart.context';
+import { Logo, Nav, NavLink, NavList } from './navigation.styles';
 
 const Navigation = () => {
   const { SHOP, CONTACTS, AUTH, LOGOUT } = NAV_CATEGORIES;
@@ -22,39 +24,31 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className='nav'>
-        <Link className='logo' to='/'>
-          <CrownLogo className='logo__svg' />
-        </Link>
-        <ul className='nav__list'>
-          <li className='nav__list-item'>
-            <Link className='nav__link' to={SHOP.url}>
-              {SHOP.title}
-            </Link>
+      <Nav>
+        <Logo to='/'>
+          <CrownLogo />
+        </Logo>
+        <NavList>
+          <li>
+            <NavLink to={SHOP.url}>{SHOP.title}</NavLink>
           </li>
-          <li className='nav__list-item'>
-            <Link className='nav__link' to={CONTACTS.url}>
-              {CONTACTS.title}
-            </Link>
+          <li>
+            <NavLink to={CONTACTS.url}>{CONTACTS.title}</NavLink>
           </li>
-          <li className='nav__list-item'>
+          <li>
             {currentUser && (
-              <span className='nav__link' onClick={handleSignOut}>
+              <NavLink as='span' onClick={handleSignOut}>
                 {LOGOUT.title}
-              </span>
+              </NavLink>
             )}
-            {!currentUser && (
-              <Link className='nav__link' to={AUTH.url}>
-                {AUTH.title}
-              </Link>
-            )}
+            {!currentUser && <NavLink to={AUTH.url}>{AUTH.title}</NavLink>}
           </li>
           <li>
             <CartIcon />
           </li>
-        </ul>
+        </NavList>
         {isCartDropdownShown && <CartDropdown />}
-      </nav>
+      </Nav>
       <Outlet />
     </>
   );

@@ -2,14 +2,14 @@ import hats from '../../assets/hats.jpg';
 import women from '../../assets/women.jpg';
 import men from '../../assets/men.jpg';
 import jackets from '../../assets/jackets.jpg';
-import trainers from '../../assets/trainers.jpg';
+import sneakers from '../../assets/sneakers.jpg';
 
 const images = {
   hats,
   women,
   men,
   jackets,
-  trainers,
+  sneakers,
 };
 
 function getImageByKey(key) {

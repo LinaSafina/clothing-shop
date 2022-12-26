@@ -1,6 +1,7 @@
 import FormField from '../form-field/form-field.component';
 import Button from '../button/button.component';
-import './auth-form.styles.scss';
+
+import { AuthInnerBlock, AuthTitle, FormButton } from './auth-form.styles';
 
 const AuthForm = ({
   formFields,
@@ -13,8 +14,8 @@ const AuthForm = ({
   onGoogleSignIn,
 }) => {
   return (
-    <div className='auth__inner-block'>
-      <h2 className='auth__title'>{title}</h2>
+    <AuthInnerBlock>
+      <AuthTitle>{title}</AuthTitle>
       <p className='auth__text'>{text}</p>
       <form className='auth-form' onSubmit={onSubmit}>
         {formFields.map(({ label, name, ...inputProps }, index) => {
@@ -31,19 +32,18 @@ const AuthForm = ({
         })}
         <div className='form__actions'>
           {btnProps.map(({ title, type, btnVariant }, index) => (
-            <Button
+            <FormButton
               btnVarient={btnVariant}
               type={type}
-              className='form__btn'
               key={index}
               onClick={type !== 'submit' ? onGoogleSignIn : () => {}}
             >
               {title}
-            </Button>
+            </FormButton>
           ))}
         </div>
       </form>
-    </div>
+    </AuthInnerBlock>
   );
 };
 

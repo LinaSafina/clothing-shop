@@ -1,19 +1,16 @@
-import './form-field.styles.scss';
+import { FormInput, FormLabel, StyledFormField } from './form-field.styles';
 
 const FormField = ({ label, ...otherProps }) => {
   console.log(otherProps.value);
   return (
-    <div className='form-field'>
-      <input className='form__input' {...otherProps} />
+    <StyledFormField>
+      <FormInput {...otherProps} />
       {label && (
-        <label
-          className={`${otherProps.value.length ? 'shrink' : ''} form__label`}
-          htmlFor={otherProps.id}
-        >
+        <FormLabel shrink={otherProps.value.length} htmlFor={otherProps.id}>
           {label}
-        </label>
+        </FormLabel>
       )}
-    </div>
+    </StyledFormField>
   );
 };
 
