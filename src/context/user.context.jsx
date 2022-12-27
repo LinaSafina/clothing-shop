@@ -1,14 +1,55 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 
-const defaultCurrentUserValue = {
+import {
+  createUserDocumentFromAuth,
+  onAuthStateChangedListener,
+} from '../utils/firebase/firebase.utils';
+import { createAction } from '../utils/reducer/reducer.utils';
+
+const INITIAL_VALUE = {
   currentUser: null,
-  setCurrentUser: () => null,
 };
 
-export const UserContext = createContext(defaultCurrentUserValue);
+export const UserContext = createContext(INITIAL_VALUE);
+
+const USER_ACTION_TYPES = {
+  SET_CURRENT_USER: 'SET_CURRENT_USER',
+};
+
+const userReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case USER_ACTION_TYPES.SET_CURRENT_USER: {
+      return {
+        currentUser: payload,
+      };
+    }
+    default: {
+      throw new Error('Unrecognized action type');
+    }
+  }
+};
 
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [state, dispatch] = useReducer(userReducer, INITIAL_VALUE);
+
+  const { currentUser } = state;
+
+  const setCurrentUser = (user) => {
+    dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+      setCurrentUser(user);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const value = {
     currentUser,

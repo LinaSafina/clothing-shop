@@ -13,14 +13,14 @@ import {
 import Button from '../button/button.component';
 
 const CartDropdown = () => {
-  const { cart, setIsCartDropdownShown } = useContext(CartContext);
+  const { cart, toggleCartDropdown } = useContext(CartContext);
 
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {
     navigate('/checkout');
 
-    setIsCartDropdownShown(false);
+    toggleCartDropdown(false);
   };
 
   return (

@@ -8,10 +8,10 @@ import {
 } from './cart-icon.styles';
 
 const CartIcon = () => {
-  const { cartItemsCount, setIsCartDropdownShown } = useContext(CartContext);
+  const { cartItemsCount, toggleCartDropdown } = useContext(CartContext);
 
   const handleCartIconClick = () => {
-    setIsCartDropdownShown((prevState) => !prevState);
+    toggleCartDropdown();
   };
 
   return (
