@@ -5,10 +5,10 @@ import { StyledAuth } from './auth.styles';
 
 const Auth = () => {
   return (
-    <div className='auth'>
+    <StyledAuth>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </StyledAuth>
   );
 };
 

@@ -13,7 +13,7 @@ export const BaseButton = styled.button`
   text-transform: uppercase;
   // font-family: 'Open Sans Condensed';
   font-weight: bolder;
-  border: none;
+  border: 1px solid black;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -28,6 +28,7 @@ export const BaseButton = styled.button`
 export const SecondaryButton = styled(BaseButton)`
   background-color: #4285f4;
   color: white;
+  border: none;
 
   &:hover {
     background-color: #357ae8;
@@ -38,7 +39,6 @@ export const SecondaryButton = styled(BaseButton)`
 export const InvertedButton = styled(BaseButton)`
   background-color: white;
   color: black;
-  border: 1px solid black;
 
   &:hover {
     background-color: black;
