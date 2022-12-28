@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import AuthForm from '../auth-form/auth-form.component';
 
@@ -8,7 +9,7 @@ import {
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
 import { SIGN_IN_FORM_DATA } from '../../pages/auth/FORM_DATA';
-import { UserContext } from '../../context/user.context';
+import { setCurrentUser } from '../../store/user/user.actions';
 
 const SignInForm = () => {
   const { formFields, defaultFormFields, btns, title, text } =
@@ -17,7 +18,7 @@ const SignInForm = () => {
   const [formState, setFormState] = useState(defaultFormFields);
   const { email, password } = formState;
 
-  const { setCurrentUser } = useContext(UserContext);
+  const dispatch = useDispatch();
 
   const resetFormFields = () => {
     setFormState(defaultFormFields);
@@ -26,7 +27,7 @@ const SignInForm = () => {
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
     await createUserDocumentFromAuth(user);
-    setCurrentUser(user);
+    dispatch(setCurrentUser(user));
   };
 
   const handleSubmit = async (event) => {

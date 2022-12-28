@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -6,7 +7,7 @@ import {
 } from '../../utils/firebase/firebase.utils';
 import { SIGN_UP_FORM_DATA } from '../../pages/auth/FORM_DATA';
 import AuthForm from '../auth-form/auth-form.component';
-import { UserContext } from '../../context/user.context';
+import { setCurrentUser } from '../../store/user/user.actions';
 
 const SignUpForm = () => {
   const { formFields, defaultFormFields, btns, title, text } =
@@ -15,7 +16,7 @@ const SignUpForm = () => {
   const [formState, setFormState] = useState(defaultFormFields);
   const { login, email, password, confirmPassword } = formState;
 
-  const { setCurrentUser } = useContext(UserContext);
+  const dispatch = useDispatch();
 
   const resetFormFields = () => {
     setFormState(defaultFormFields);
@@ -36,7 +37,7 @@ const SignUpForm = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName: login });
-      setCurrentUser(user);
+      dispatch(setCurrentUser(user));
       resetFormFields();
     } catch (error) {
       switch (error.code) {

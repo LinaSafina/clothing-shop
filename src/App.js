@@ -1,13 +1,35 @@
 import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Navigation from './pages/navigation/navigation.component';
 import Contacts from './pages/contacts/contacts.component';
 import SignIn from './pages/auth/auth.component';
 import Shop from './pages/shop/shop.component';
 import Home from './pages/home/home.component';
 import Checkout from './pages/checkout/checkout.component';
-import Category from './pages/category/category.component';
+
+import {
+  createUserDocumentFromAuth,
+  onAuthStateChangedListener,
+} from './utils/firebase/firebase.utils';
+import { setCurrentUser } from './store/user/user.actions';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+
+      dispatch(setCurrentUser(user));
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
     <Routes>
       <Route path='/' element={<Navigation />}>

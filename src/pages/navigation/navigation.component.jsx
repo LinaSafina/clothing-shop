@@ -1,25 +1,29 @@
-import { useContext } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
 import { NAV_CATEGORIES } from '../auth/FORM_DATA';
-import { UserContext } from '../../context/user.context';
+import { setCurrentUser } from '../../store/user/user.actions';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
-import { CartContext } from '../../context/cart.context';
+
 import { Logo, Nav, NavLink, NavList } from './navigation.styles';
+import { selectCurrentUser } from '../../store/user/user.selectors';
+import { selectCartDropdown } from '../../store/cart/cart.selectors';
 
 const Navigation = () => {
   const { SHOP, CONTACTS, AUTH, LOGOUT } = NAV_CATEGORIES;
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  const { isCartDropdownShown } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+
+  const isCartDropdownShown = useSelector(selectCartDropdown);
 
   const handleSignOut = async () => {
     await signOutUser();
-    setCurrentUser(null);
+    dispatch(setCurrentUser(null));
   };
 
   return (
