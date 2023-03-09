@@ -19,6 +19,7 @@ export const categoriesSlice = createSlice({
   reducers: {
     fetchCategoriesStart(state) {
       state.isLoading = true;
+      state.error = null;
     },
     fetchCategoriesSuccess(state, action: PayloadAction<Category[]>) {
       state.categories = action.payload;

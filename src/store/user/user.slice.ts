@@ -23,24 +23,30 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: INITIAL_VALUE,
   reducers: {
-    checkUserSession(state) {},
+    checkUserSession(state) {
+      state.error = null;
+    },
     signOutUserStart(state) {
       state.isLoading = true;
+      state.error = null;
     },
     signUpUserStart(
       state,
       action: PayloadAction<{ email: string; password: string; login: string }>
     ) {
       state.isLoading = true;
+      state.error = null;
     },
     emailSignInStart(
       state,
       action: PayloadAction<{ email: string; password: string }>
     ) {
       state.isLoading = true;
+      state.error = null;
     },
     googleSignInStart(state) {
       state.isLoading = true;
+      state.error = null;
     },
     signInSuccess(state, action: PayloadAction<UserData & { id: string }>) {
       state.currentUser = action.payload;

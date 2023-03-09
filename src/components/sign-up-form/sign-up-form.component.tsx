@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { AuthError, AuthErrorCodes } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 
 import { SIGN_UP_FORM_DATA } from '../../pages/auth/FORM_DATA';
@@ -23,32 +22,13 @@ const SignUpForm = () => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert('passwords do not match');
+      alert('Passwords do not match');
       return;
     }
 
-    try {
-      dispatch(signUpUserStart({ email, password, login }));
+    dispatch(signUpUserStart({ email, password, login }));
 
-      resetFormFields();
-    } catch (error) {
-      switch ((error as AuthError).code) {
-        case AuthErrorCodes.EMAIL_EXISTS: {
-          alert('Пользователь с данной почтой уже существует');
-          break;
-        }
-        case AuthErrorCodes.INVALID_EMAIL: {
-          alert('Проверьте правильность введенной почты');
-          break;
-        }
-        case AuthErrorCodes.WEAK_PASSWORD: {
-          alert('Пароль должен содержать хотя бы 6 символов');
-          break;
-        }
-        default:
-          console.log('Не получилось зарегистрироваться', error);
-      }
-    }
+    resetFormFields();
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

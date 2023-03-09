@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { FC } from 'react';
 
 import {
   CheckoutItemName,
@@ -12,16 +13,13 @@ import {
   removeGroupOfItems,
   removeItemFromCart,
 } from '../../store/cart/cart.slice';
-import { selectCart } from '../../store/cart/cart.selectors';
 import { CartItemProps } from '../cart-item/cart-item.component';
-import { FC } from 'react';
 
 type CheckoutItemProps = CartItemProps & { data: { id: number } };
 
 const CheckoutItem: FC<CheckoutItemProps> = ({ data }) => {
   const { imageUrl, name, quantity, price, id } = data;
 
-  const cart = useSelector(selectCart);
   const dispatch = useDispatch();
 
   const addItemHandler = () => {

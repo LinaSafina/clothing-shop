@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { AuthError, AuthErrorCodes } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 
 import AuthForm from '../auth-form/auth-form.component';
@@ -30,24 +29,9 @@ const SignInForm = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    try {
-      dispatch(emailSignInStart({ email, password }));
+    dispatch(emailSignInStart({ email, password }));
 
-      resetFormFields();
-    } catch (error) {
-      switch ((error as AuthError).code) {
-        case AuthErrorCodes.INVALID_PASSWORD: {
-          alert('Неверный пароль');
-          break;
-        }
-        case AuthErrorCodes.USER_DELETED: {
-          alert('Такого пользователя не существует');
-          break;
-        }
-        default:
-          console.log('Не получилось войти', error);
-      }
-    }
+    resetFormFields();
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

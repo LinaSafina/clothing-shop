@@ -81,6 +81,7 @@ function* emailSignInAsync(
       email,
       password
     );
+    console.log('here');
 
     if (userCredential) {
       const { user } = userCredential;
@@ -147,36 +148,36 @@ function* signInAfterSignUpAsync(
 //watchers
 function* onGoogleSignIn() {
   const action = yield* take(googleSignInStart);
-  yield takeLatest(action.type, googleSignInAsync);
+  yield* takeLatest(action.type, googleSignInAsync);
 }
 
 function* onEmailSignIn() {
   const action = yield* take(emailSignInStart);
-  yield takeLatest(action.type, emailSignInAsync);
+  yield* takeLatest(action.type, emailSignInAsync);
 }
 
 function* onSignOut() {
   const action = yield* take(signOutUserStart);
-  yield takeLatest(action.type, signOutUserAsync);
+  yield* takeLatest(action.type, signOutUserAsync);
 }
 
 function* onCheckUserSession() {
   const action = yield* take(checkUserSession);
-  yield takeLatest(action.type, checkUserSessionAsync);
+  yield* takeLatest(action.type, checkUserSessionAsync);
 }
 
 function* onSignUp() {
   const action = yield* take(signUpUserStart);
-  yield takeLatest(action.type, signUpUserAsync);
+  yield* takeLatest(action.type, signUpUserAsync);
 }
 
 function* onSignUpSuccess() {
   const action = yield* take(signUpUserSuccess);
-  yield takeLatest(action.type, signInAfterSignUpAsync);
+  yield* takeLatest(action.type, signInAfterSignUpAsync);
 }
 
 export function* userSaga() {
-  yield all([
+  yield* all([
     call(onCheckUserSession),
     call(onGoogleSignIn),
     call(onEmailSignIn),
