@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Crown Clothing Shop
+Crown Clothing Shop is a single-page application (SPA) built using React, Redux, Redux Saga, TypeScript, and SCSS. The project includes several pages, including authorization, main, shop, category, checkout, and contact pages.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Getting Started
+To get started with the project, you can clone the repository to your local machine:
+```js
+git clone https://github.com/your-username/crown-clothing-shop.git
+```
 
-## Available Scripts
+Then, you can install the dependencies using either npm or yarn:
+```js
+npm install
+```
+or
+```js
+yarn install
+```
+Once the dependencies are installed, you can start the development server using:
+```js
+npm start
+```
+or
+```js
+yarn start
+```
+The development server will be available at http://localhost:3000/.
 
-In the project directory, you can run:
+### Pages
+The project includes several pages:
 
-### `npm start`
+#### Authorization
+The authorization page allows users to sign in or sign up using their email and password or Google account (Firebase is used to handle authentification).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Main
+The main page is the landing page for the application and provides an overview of the shop's offerings.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Shop
+The shop page displays all clothing categories available in the shop.
 
-### `npm test`
+#### Category
+Each clothing category has its separate page with all the items listed under it.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Checkout
+The checkout page allows users to purchase items from the shop. Payment functionality will be added soon.
 
-### `npm run build`
+#### Contact
+The contact page allows users to contact the shop with any questions or concerns. Contact information will be added soon.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Technologies Used
+The project was built using the following technologies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- React
+- React router (v.6)
+- Redux
+- Redux Saga
+- TypeScript
+- SCSS
+- Firebase (for Authentication and as a Database)
 
 ### Deployment
+The app is deployed on Netlify and can be accessed at the following URL: [crown-shop-casual-clothes](https://crown-shop-casual-clothes.netlify.app/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Contributing
+If you'd like to contribute to the project, please fork the repository and create a new branch for your changes. Once you've made your changes, submit a pull request and we'll review your changes.
